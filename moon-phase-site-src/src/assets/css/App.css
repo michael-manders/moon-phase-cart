@@ -1,0 +1,490 @@
+/* eslint-disable */
+
+:root {
+    --text: #f8f8f8;
+    --background: #1e2121;
+    --primary: #5755b4;
+    --primary-dark: #3f3d7a;
+    --secondary: #64548d;
+    --accent: #da9ada;
+    --accent-dark: #b56ab5;
+    background-color: var(--background);
+    font-family: "Rubik", sans-serif;
+    color: var(--text);
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: local("Rubik"), url("../font/Rubik-Regular.ttf"), format("truetype");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: local("Rubik"), url("../font/Rubik-Bold.ttf"), format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: local("Rubik"), url("../font/Rubik-Italic.ttf"), format("truetype");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: local("Rubik"), url("../font/Rubik-Medium.ttf"), format("truetype");
+    font-weight: medium;
+}
+
+#App {
+    width: 100vw;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#header {
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.section-marker {
+    width: 100%;
+    height: 20%;
+}
+
+.section-marker > .section-title {
+    font-size: 200%;
+    height: 0;
+}
+
+.section-marker > .line {
+    margin-top: 5vh;
+    width: 100%;
+    height: 0.5vh;
+    background-color: var(--accent);
+}
+
+#header > * {
+    margin: 0;
+}
+
+#header > h1 {
+    font-size: 3rem;
+    margin: 0.7%;
+}
+
+#calender-container {
+    margin-top: 2%;
+}
+
+#calender-content-container {
+    width: 95vw;
+    height: 80vh;
+    /* background-color: var(--primary); */
+    display: grid;
+    grid-template-columns: 70% 30%;
+    grid-template-rows: 40% 60%;
+    grid-template-areas:
+        "calender details"
+        "calender options";
+}
+
+#calender-content-container > * {
+    margin: 0;
+    border-radius: 0.5rem;
+    width: calc(100% - 1rem);
+    height: calc(100% - 1rem);
+}
+
+#calender {
+    grid-area: calender;
+    /* background-color: var(--primary); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#details {
+    grid-area: details;
+    background-color: var(--accent);
+}
+
+#options {
+    grid-area: options;
+    background-color: var(--secondary);
+}
+
+#calender-bounds {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+#calender-bounds > * {
+    margin: 0;
+    border-radius: 0.5rem;
+    width: calc(100% - 0.5rem);
+    height: calc(100% - 0.5rem);
+}
+
+.calender-header-item {
+    background-color: var(--accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4vw;
+}
+
+.calender-box {
+    background-color: var(--primary);
+    transition: 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.calender-day {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.calender-box:hover {
+    background-color: var(--primary-dark);
+    cursor: pointer;
+}
+
+.calender-day-number {
+    font-size: 2vw;
+    margin: 0.2% 3%;
+    width: 30%;
+}
+
+.moon-info {
+    width: 55%;
+    margin: 3% 5% 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    transform: translateX(-15%);
+}
+
+.moon-illumination {
+    width: 50%;
+    font-size: 1.5vw;
+    text-align: right;
+}
+
+.moon-image {
+    /* width: 50%; */
+    font-size: 2vw;
+    text-align: left;
+    /* align at top */
+    transform: translateY(-1 0%);
+}
+
+.rs-info {
+    width: 90%;
+    margin-left: 5%;
+    height: 60%;
+    display: grid;
+    grid-template-columns: 1fr 4fr 4fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+        "sun-img sunrise sunset"
+        "moon-img moonrise moonset"
+        "astro-img astrobegin astroend";
+
+    transform: translateY(-0.2rem);
+}
+
+.rs-info > * {
+    font-size: 70%;
+    margin: 0;
+}
+
+.calender-box:empty {
+    background-color: var(--background);
+}
+
+#options-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+#form {
+    width: 80%;
+    height: 80%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.pair {
+    width: 100%;
+    height: 12%;
+    margin-top: 2%;
+    /* padding: 3% 0; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pair > input {
+    max-width: clamp(50%, 40vw, 65%);
+    background-color: var(--text);
+}
+
+.pair > * {
+    border-radius: 0.5rem;
+    outline: none;
+}
+
+.pair > *:not(label):not(button):hover {
+    outline: var(--accent) solid 0.1rem;
+}
+
+.pair > button {
+    width: 100%;
+    background-color: var(--accent);
+    border: 0;
+    border-radius: 0.5rem;
+    transition: 300ms ease-in-out;
+}
+
+.pair > button:hover {
+    cursor: pointer;
+    background-color: var(--accent-dark);
+}
+
+/* if width < 1000px */
+
+/* day details */
+#day-details[data-visible="false"] {
+    display: none;
+}
+
+#details-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#details-container > * {
+    margin: 2%;
+}
+
+#month-name {
+    font-size: 150%;
+}
+
+#month-details {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#month-details > .detail {
+    width: 50%;
+    font-size: 110%;
+    /* height: 70%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#day-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#day-details > #date-content {
+    font-size: 125%;
+}
+
+#day-details > #details {
+    width: 100%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#day-details > #details > .small {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5%;
+}
+
+#day-details > #details > .big {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#day-details > #details > * {
+    margin: 1% 0 0 0;
+    font-size: 80%;
+}
+/* #details .small >  */
+
+#planner-container {
+    width: 95vw;
+    height: 60vh;
+    border-radius: 0.5rem;
+    margin: 2% 0% 2% 0%;
+    /* background-color: var(--primary); */
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 100%;
+}
+
+#planner-container > * {
+    width: calc(100% - 2%);
+    height: calc(100% - 1rem);
+    border-radius: 1rem;
+}
+
+#dates-list {
+    background-color: var(--primary);
+}
+
+#filter-options {
+    background-color: var(--secondary);
+}
+
+@media screen and (min-width: 1400px) {
+    .rs-info > * {
+        font-size: 85%;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    #calender-content-container {
+        height: 80vh;
+        grid-template-columns: 40% 60%;
+        grid-template-rows: 70% 30%;
+        grid-template-areas:
+            "calender calender"
+            "details options";
+    }
+
+    #calender-bounds {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .pair {
+        width: 35%;
+        margin: 0% 7.5% 0% 7.5%;
+        padding: 0;
+        height: 20%;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .calender-header-item {
+        /* disable text */
+        font-size: 0%;
+    }
+
+    .firstLetter {
+        width: 100%;
+        height: 100%;
+        font-size: 10vw !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .calender-day > * {
+        display: none;
+        /* position: fixed; */
+    }
+
+    .calender-day {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .calender-day-number {
+        display: block;
+        position: relative;
+        width: 100%;
+        margin-top: 5%;
+        font-size: 150%;
+        text-align: center;
+    }
+
+    .moon-info {
+        all: revert;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .moon-info > * {
+        all: revert;
+        font-size: 120%;
+    }
+
+    .pair > label {
+        font-size: 0;
+    }
+
+    .pair > input {
+        width: 100%;
+        max-width: fit-content;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .moon-illumination {
+        display: none;
+    }
+
+    #calender-content-container {
+        height: 80vh;
+        grid-template-columns: 100%;
+        grid-template-rows: 60% 20% 30%;
+        grid-template-areas:
+            "calender"
+            "options"
+            "details";
+    }
+}
